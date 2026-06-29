@@ -1,0 +1,157 @@
+:root {
+  --primary: #3E7C59;
+  --secondary: #D9A85F;
+  --bg: #FBF9F6;
+  --text: #1F2933;
+  --card: #FFFFFF;
+}
+
+[data-theme="dark"] {
+  --bg: #111;
+  --text: #fff;
+  --card: #1c1c1c;
+}
+
+/* ===== LAYOUT ===== */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.dashboard {
+  display: flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 260px;
+  background: var(--card);
+  height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar img {
+  width: 120px;
+}
+
+.sidebar__nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.sidebar__nav a.active,
+.sidebar__nav a:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  background: var(--card);
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ===== NOTIFICATIONS ===== */
+.notif-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.notif-dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 220px;
+  background: var(--card);
+  border-radius: 12px;
+  display: none;
+  padding: 12px;
+}
+
+.notif-dropdown.active {
+  display: block;
+}
+
+.notif-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 24px;
+}
+
+.card {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 16px;
+}
+
+/* ===== TABLE ===== */
+.table-section {
+  padding: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+.status.success { color: green; }
+.status.pending { color: orange; }
+.status.cancel { color: red; }
+
+/* ===== PROFILE ===== */
+.profile img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sidebar {
+    display: none;
+  }
+}

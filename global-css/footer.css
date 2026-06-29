@@ -1,0 +1,700 @@
+/* ============================================================
+   PawSpa — footer.css
+   Component-scoped styles for the site footer.
+   Works alongside global.css tokens.
+   ============================================================ */
+
+/* ─────────────────────────────────────────────
+   1. FOOTER BASE
+   ───────────────────────────────────────────── */
+
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  position: relative;
+}
+
+/* ── Wave top divider ───────────────────────── */
+.footer-wave {
+  display: block;
+  line-height: 0;
+  margin-bottom: -1px;
+  /* Wave comes from the section ABOVE the footer,
+     rendered in the bg color of the FOOTER */
+  transform: translateY(-99%);
+  pointer-events: none;
+}
+
+.footer-wave svg {
+  width: 100%;
+  height: 60px;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────
+   2. FOOTER GRID (4 columns)
+   ───────────────────────────────────────────── */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr 1fr 1.2fr;
+  gap: var(--sp-6);
+  padding-top: var(--sp-8);
+  padding-bottom: var(--sp-8);
+}
+
+@media (max-width: 1279px) {
+  .footer-grid {
+    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    gap: var(--sp-4);
+  }
+}
+
+@media (max-width: 1023px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+  }
+
+  /* Brand col spans full width on tablet */
+  .footer-brand-col {
+    grid-column: 1 / -1;
+    /* Layout brand info horizontally on tablet */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-3);
+    align-items: start;
+  }
+
+  /* Stack brand description & newsletter beside logo & contact */
+  .footer-brand-col .footer-logo-link,
+  .footer-brand-col .footer-desc {
+    /* First column left items */
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-3);
+  }
+
+  .footer-brand-col {
+    grid-column: 1 / -1;
+    display: block;
+  }
+}
+
+@media (max-width: 539px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   3. BRAND COLUMN
+   ───────────────────────────────────────────── */
+
+.footer-logo-link {
+  display: inline-block;
+  transition: opacity 0.2s ease;
+  margin-bottom: var(--sp-2);
+}
+
+.footer-logo-link:hover {
+  opacity: 0.85;
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  /* Filter to make logo visible on dark bg */
+  filter: brightness(0) invert(1);
+}
+
+.footer-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--footer-muted);
+  line-height: 1.8;
+  max-width: 290px;
+  margin-bottom: var(--sp-3);
+}
+
+/* ── Contact list ───────────────────────────── */
+.footer-contact-list {
+  list-style: none;
+  margin: 0 0 var(--sp-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: var(--text-sm);
+  color: var(--footer-muted);
+  line-height: 1.5;
+}
+
+.footer-contact-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--aqua-fresh);
+  opacity: 0.8;
+}
+
+.footer-contact-item a {
+  color: var(--footer-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-item a:hover {
+  color: var(--aqua-fresh);
+}
+
+/* ─────────────────────────────────────────────
+   4. SOCIAL LINKS
+   ───────────────────────────────────────────── */
+
+.footer-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-bottom: var(--sp-3);
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--footer-muted);
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.footer-social-link:hover {
+  background: var(--paw-green);
+  border-color: var(--paw-green);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.footer-social-link:focus-visible {
+  outline: 3px solid var(--aqua-fresh);
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   5. NEWSLETTER
+   ───────────────────────────────────────────── */
+
+.footer-newsletter-block {
+  margin-top: var(--sp-2);
+}
+
+.footer-newsletter-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--footer-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-newsletter-label svg {
+  color: var(--aqua-fresh);
+  flex-shrink: 0;
+}
+
+.footer-newsletter {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius-full);
+  color: var(--footer-heading);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-newsletter input::placeholder {
+  color: rgba(191, 216, 197, 0.45);
+}
+
+.footer-newsletter input:focus {
+  border-color: var(--paw-green);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.footer-newsletter .btn {
+  padding: 0.6rem 1.25rem;
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────
+   6. COLUMN HEADINGS & LINKS
+   ───────────────────────────────────────────── */
+
+.footer-col {
+  /* Standard column */
+}
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  color: var(--footer-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sp-2);
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--footer-muted);
+  text-decoration: none;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  line-height: 1.4;
+}
+
+[dir="rtl"] .footer-link {
+  padding-left: 0;
+}
+
+.footer-link svg {
+  flex-shrink: 0;
+  color: var(--footer-muted);
+  transition: color 0.2s ease;
+  opacity: 0.7;
+}
+
+.footer-link:hover {
+  color: var(--aqua-fresh);
+  padding-left: 4px;
+}
+
+[dir="rtl"] .footer-link:hover {
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+.footer-link:hover svg {
+  color: var(--aqua-fresh);
+  opacity: 1;
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--aqua-fresh);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Highlight variant (e.g. "View all services") */
+.footer-link--highlight {
+  color: var(--aqua-fresh);
+  font-weight: var(--fw-medium);
+}
+
+.footer-link--highlight:hover {
+  color: var(--white);
+}
+
+/* Dashboard link — special accent */
+.footer-link--dashboard {
+  color: var(--paw-gold);
+  font-weight: var(--fw-semibold);
+  gap: 8px;
+}
+
+.footer-link--dashboard svg {
+  color: var(--paw-gold);
+  opacity: 1;
+}
+
+.footer-link--dashboard:hover {
+  color: var(--white);
+}
+
+.footer-link--dashboard:hover svg {
+  color: var(--white);
+}
+
+/* ── Sub-headings inside link lists ──────────── */
+.footer-links-sub-heading {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: rgba(191, 216, 197, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-top: 0.25rem;
+}
+
+/* ── Divider within link list ─────────────────── */
+.footer-links-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 0.25rem 0;
+}
+
+/* ─────────────────────────────────────────────
+   7. FOOTER CTA BLOCK (in Help & Support col)
+   ───────────────────────────────────────────── */
+
+.footer-cta-block {
+  margin-top: var(--sp-3);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.footer-cta-label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: var(--footer-muted);
+  margin-bottom: 0.625rem;
+  font-weight: var(--fw-medium);
+}
+
+.footer-cta-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: var(--text-xs);
+  padding: 0.6rem 1rem;
+}
+
+/* ─────────────────────────────────────────────
+   8. FOOTER BOTTOM BAR
+   ───────────────────────────────────────────── */
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--footer-muted);
+  line-height: 1.5;
+}
+
+/* ── Bottom links ──────────────────────────── */
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.footer-bottom-link {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--footer-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.footer-bottom-link:hover {
+  color: var(--aqua-fresh);
+}
+
+.footer-bottom-link:focus-visible {
+  outline: 2px solid var(--aqua-fresh);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Trust badges ──────────────────────────── */
+.footer-bottom-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: var(--fw-medium);
+  color: rgba(191, 216, 197, 0.55);
+  letter-spacing: 0.03em;
+}
+
+.footer-badge svg {
+  color: var(--aqua-fresh);
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────────
+   9. BACK TO TOP BUTTON
+   ───────────────────────────────────────────── */
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: var(--z-sticky);
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paw-green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 16px rgba(62, 124, 89, 0.4);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s,
+    transform 0.3s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0s,
+    transform 0.3s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.back-to-top:hover {
+  background: var(--paw-green-dark);
+  box-shadow: 0 6px 20px rgba(62, 124, 89, 0.5);
+  transform: translateY(-3px);
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid var(--paw-green);
+  outline-offset: 3px;
+}
+
+[dir="rtl"] .back-to-top {
+  right: auto;
+  left: 2rem;
+}
+
+/* ─────────────────────────────────────────────
+   10. COOKIE BANNER
+   ───────────────────────────────────────────── */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  width: min(640px, calc(100vw - 2rem));
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: 1rem 1.25rem;
+  flex-wrap: wrap;
+  animation: slideUpIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes slideUpIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.cookie-banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cookie-banner-content svg {
+  flex-shrink: 0;
+  color: var(--paw-green);
+  margin-top: 2px;
+}
+
+.cookie-banner-content p {
+  font-size: var(--text-sm);
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cookie-policy-link {
+  color: var(--paw-green);
+  text-decoration: underline;
+  font-weight: var(--fw-medium);
+}
+
+.cookie-policy-link:hover {
+  color: var(--paw-green-dark);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────
+   11. RESPONSIVE ADJUSTMENTS
+   ───────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .footer-bottom-badges {
+    display: none; /* Hide badges on mobile for space */
+  }
+
+  .back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  [dir="rtl"] .back-to-top {
+    right: auto;
+    left: 1.25rem;
+  }
+
+  .cookie-banner {
+    flex-direction: column;
+    bottom: 0.75rem;
+    border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-sm);
+  }
+
+  .cookie-banner-actions {
+    width: 100%;
+  }
+
+  .cookie-banner-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 539px) {
+  .footer-bottom-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+  }
+
+  .footer-newsletter {
+    flex-direction: column;
+  }
+
+  .footer-newsletter input {
+    width: 100%;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   12. PRINT STYLES
+   ───────────────────────────────────────────── */
+
+@media print {
+  .footer {
+    background: white;
+    color: black;
+  }
+
+  .footer-heading {
+    color: black;
+  }
+
+  .footer-link,
+  .footer-contact-item,
+  .footer-copyright {
+    color: #444;
+  }
+
+  .back-to-top,
+  .cookie-banner,
+  .footer-newsletter-block {
+    display: none !important;
+  }
+}

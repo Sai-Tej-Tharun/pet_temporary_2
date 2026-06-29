@@ -1,0 +1,24 @@
+<svg width="300" height="300" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#3E7C59" stroke="white" stroke-width="6" stroke-linejoin="round">
+    
+    <!-- Main paw pad -->
+    <path d="M100 130
+             C70 130, 55 110, 55 95
+             C55 75, 75 65, 100 65
+             C125 65, 145 75, 145 95
+             C145 110, 130 130, 100 130Z"></path>
+    
+    <!-- Toe 1 -->
+    <circle cx="65" cy="55" r="14"></circle>
+    
+    <!-- Toe 2 -->
+    <circle cx="90" cy="45" r="16"></circle>
+    
+    <!-- Toe 3 -->
+    <circle cx="110" cy="45" r="16"></circle>
+    
+    <!-- Toe 4 -->
+    <circle cx="135" cy="55" r="14"></circle>
+
+  </g>
+</svg>

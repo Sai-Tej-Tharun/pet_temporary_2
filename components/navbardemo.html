@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PawSpa Navbar — Working Demo</title>
+<style>
+/* ── Minimal global tokens ─────────────────────────────── */
+:root {
+  --nav-bg: rgba(255,255,255,0.97);
+  --nav-border: rgba(0,0,0,0.08);
+  --nav-text: #1a1a2e;
+  --nav-text-active: #3e7c59;
+  --bg-card: #ffffff;
+  --bg-secondary: #f5f7f5;
+  --border-color: rgba(0,0,0,0.09);
+  --text-dark: #1a1a2e;
+  --text-muted: #7a8a7e;
+  --paw-green: #3e7c59;
+  --paw-green-dark: #2d5c42;
+  --paw-green-light: #a8d5b8;
+  --font-heading: system-ui, sans-serif;
+  --font-body: system-ui, sans-serif;
+  --container-xl: 1280px;
+}
+[data-theme="dark"] {
+  --nav-bg: rgba(18,24,20,0.97);
+  --nav-border: rgba(255,255,255,0.08);
+  --nav-text: #e8f0eb;
+  --bg-card: #1a2420;
+  --bg-secondary: #141c18;
+  --border-color: rgba(255,255,255,0.09);
+  --text-dark: #e8f0eb;
+  --text-muted: #8aaa96;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; background: #f0f4f1; color: #1a1a2e; }
+[data-theme="dark"] body { background: #0f1612; color: #e8f0eb; }
+
+/* shared btn styles */
+.btn { display:inline-flex;align-items:center;gap:6px;padding:.55rem 1.1rem;border-radius:6px;text-decoration:none;font-size:.875rem;font-weight:500;cursor:pointer;border:none;line-height:1; }
+.btn-primary  { background:#3e7c59;color:#fff; }
+.btn-primary:hover { background:#2d5c42; }
+.btn-secondary{ background:transparent;color:#3e7c59;border:1px solid #3e7c59; }
+.btn-secondary:hover { background:rgba(62,124,89,.08); }
+.btn-ghost    { background:transparent;color:#3e7c59;border:1px solid rgba(62,124,89,.35); }
+.btn-ghost:hover { background:rgba(62,124,89,.06); }
+.btn-sm { padding:.4rem .85rem;font-size:.8rem; }
+.w-full { width:100%;justify-content:center; }
+
+/* page content */
+main { padding: 96px 2rem 4rem; max-width:800px; margin:0 auto; }
+h1 { font-size:2rem;margin-bottom:1rem; }
+p  { line-height:1.7;margin-bottom:.75rem;color:#444; }
+[data-theme="dark"] p { color:#aaa; }
+.demo-badge { display:inline-block;background:#3e7c59;color:#fff;padding:.25rem .75rem;border-radius:20px;font-size:.8rem;margin-bottom:1.5rem; }
+</style>
+
+<!-- navbar.css inline for demo -->
+
+    <link rel="stylesheet" href="../global-css/global.css">
+  <link rel="stylesheet" href="../global-css/navbar.css">
+  <link rel="stylesheet" href="../global-css/footer.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="main-navbar" role="navigation" aria-label="Main navigation">
+  <div class="navbar-inner">
+
+    <a href="#" class="navbar-logo" aria-label="PawSpa Home">
+      <span class="navbar-logo-text">🐾 PawSpa</span>
+    </a>
+
+    <ul class="navbar-nav" role="menubar">
+      <li class="nav-item" role="none">
+        <a href="#" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          Home
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Home – Classic</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Home – Premium</a></li>
+        </ul>
+      </li>
+      <li class="nav-item" role="none"><a href="#" class="nav-link" role="menuitem">About</a></li>
+      <li class="nav-item" role="none">
+        <a href="#" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <ul class="dropdown-menu dropdown-menu--wide" role="menu">
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Full Grooming</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Bath &amp; Blow Dry</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Hair Styling</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Nail Clipping</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Ear Cleaning</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Spa Treatments</a></li>
+        </ul>
+      </li>
+      <li class="nav-item" role="none"><a href="#" class="nav-link" role="menuitem">Pricing</a></li>
+      <li class="nav-item" role="none">
+        <a href="#" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          Blog
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <ul class="dropdown-menu dropdown-menu--wide" role="menu">
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Grooming Tips for Dogs</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Cat Bath Guide</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Pet Health &amp; Hygiene</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Breed Grooming Guide</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">DIY Pet Care at Home</a></li>
+          <li role="none"><a href="#" class="dropdown-item" role="menuitem">Spa Treatments Explained</a></li>
+        </ul>
+      </li>
+      <li class="nav-item" role="none"><a href="#" class="nav-link" role="menuitem">Contact</a></li>
+      <li class="nav-item" role="none"><a href="#" class="nav-link nav-link--quote" role="menuitem">Get a Quote</a></li>
+    </ul>
+
+    <div class="navbar-actions" role="group">
+      <!-- Theme Toggle -->
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme" type="button">
+        <svg data-icon-light width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg data-icon-dark width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <!-- RTL Toggle -->
+      <button class="icon-btn" data-rtl-toggle aria-label="Toggle RTL" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8l4 4-4 4M3 12h18"/><path d="M7 4a4 4 0 000 8h3"/></svg>
+      </button>
+      <!-- Book Now -->
+      <a href="#" class="btn btn-primary btn-sm navbar-btn-book" data-book-now>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Now
+      </a>
+      <!-- Login -->
+      <a href="#" class="btn btn-secondary btn-sm navbar-btn-login">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Login
+      </a>
+      <!-- Hamburger -->
+      <button class="navbar-toggle" data-mobile-toggle aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <svg class="ham-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="ham-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="mobile-menu-header">
+      <span class="navbar-logo-text" style="font-size:1.2rem;font-weight:700;color:var(--paw-green,#3e7c59)">🐾 PawSpa</span>
+      <button class="icon-btn" data-mobile-toggle aria-label="Close" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-nav">
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-link" data-mobile-accordion aria-expanded="false" type="button">
+          <span>Home</span>
+          <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-submenu" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <a href="#" class="mobile-submenu-link">Home – Classic</a>
+          <a href="#" class="mobile-submenu-link">Home – Premium</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group"><a href="#" class="mobile-nav-link mobile-nav-link--plain">About</a></div>
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-link" data-mobile-accordion aria-expanded="false" type="button">
+          <span>Services</span>
+          <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-submenu" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <a href="#" class="mobile-submenu-link">Full Grooming</a>
+          <a href="#" class="mobile-submenu-link">Bath &amp; Blow Dry</a>
+          <a href="#" class="mobile-submenu-link">Hair Styling</a>
+          <a href="#" class="mobile-submenu-link">Nail Clipping</a>
+          <a href="#" class="mobile-submenu-link">Ear Cleaning</a>
+          <a href="#" class="mobile-submenu-link">Spa Treatments</a>
+          <a href="#" class="mobile-submenu-link mobile-submenu-link--all">View All Services →</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group"><a href="#" class="mobile-nav-link mobile-nav-link--plain">Pricing</a></div>
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-link" data-mobile-accordion aria-expanded="false" type="button">
+          <span>Blog</span>
+          <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-submenu" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <a href="#" class="mobile-submenu-link">Grooming Tips for Dogs</a>
+          <a href="#" class="mobile-submenu-link">Cat Bath Guide</a>
+          <a href="#" class="mobile-submenu-link">Pet Health &amp; Hygiene</a>
+          <a href="#" class="mobile-submenu-link">Breed Grooming Guide</a>
+          <a href="#" class="mobile-submenu-link">DIY Pet Care at Home</a>
+          <a href="#" class="mobile-submenu-link">Spa Treatments Explained</a>
+          <a href="#" class="mobile-submenu-link mobile-submenu-link--all">View All Posts →</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group"><a href="#" class="mobile-nav-link mobile-nav-link--plain">Contact</a></div>
+    </nav>
+    <div class="mobile-ctas">
+      <a href="#" class="btn btn-ghost w-full">Get a Quote</a>
+      <a href="#" class="btn btn-primary w-full" data-book-now>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Now
+      </a>
+      <a href="#" class="btn btn-secondary w-full">Login</a>
+    </div>
+    <div class="mobile-toggles">
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme" type="button">
+        <svg data-icon-light width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg data-icon-dark width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" data-rtl-toggle aria-label="Toggle RTL" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8l4 4-4 4M3 12h18"/><path d="M7 4a4 4 0 000 8h3"/></svg>
+      </button>
+      <span class="mobile-toggles-label">Theme &amp; Direction</span>
+    </div>
+  </div>
+</nav>
+
+<!-- OVERLAY — outside nav, at body level -->
+<div id="mobile-overlay" class="mobile-overlay"></div>
+
+<main>
+  <span class="demo-badge">✓ Working Demo</span>
+  <h1>PawSpa Navbar Demo</h1>
+  <p>This page proves the navbar works correctly. All items are visible on desktop. On mobile (resize window below 1024px), the hamburger appears and the slide-in menu works.</p>
+  <p><strong>Test checklist:</strong></p>
+  <p>✅ Hover "Home", "Services", "Blog" — dropdowns appear<br>
+     ✅ All nav items visible including Contact &amp; Get a Quote<br>
+     ✅ Theme toggle (moon icon) switches dark mode<br>
+     ✅ RTL toggle switches direction<br>
+     ✅ Book Now &amp; Login buttons visible<br>
+     ✅ Resize &lt;1024px — hamburger appears, Book Now hides<br>
+     ✅ Tap hamburger — mobile menu slides in from right<br>
+     ✅ Tap Home/Services/Blog — accordion expands<br>
+     ✅ Tap overlay or ✕ — menu closes</p>
+</main>
+
+<script>
+'use strict';
+
+/* ── SCROLL ── */
+(function() {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  const tick = () => navbar.classList.toggle('scrolled', window.scrollY > 20);
+  let pending = false;
+  window.addEventListener('scroll', () => { if (!pending) { requestAnimationFrame(() => { tick(); pending = false; }); pending = true; } }, { passive: true });
+  tick();
+})();
+
+/* ── DROPDOWN HOVER ── */
+(function() {
+  const items = document.querySelectorAll('.nav-item');
+  const DELAY = 280;
+  items.forEach(item => {
+    let timer = null;
+    const open = () => {
+      clearTimeout(timer);
+      items.forEach(o => { if (o !== item) { o.classList.remove('hovered'); const l = o.querySelector(':scope > .nav-link'); if (l) l.setAttribute('aria-expanded','false'); } });
+      item.classList.add('hovered');
+      const l = item.querySelector(':scope > .nav-link'); if (l) l.setAttribute('aria-expanded','true');
+    };
+    const close = () => { timer = setTimeout(() => { item.classList.remove('hovered'); const l = item.querySelector(':scope > .nav-link'); if (l) l.setAttribute('aria-expanded','false'); }, DELAY); };
+    item.addEventListener('mouseenter', open);
+    item.addEventListener('mouseleave', close);
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.nav-item')) { items.forEach(item => { item.classList.remove('hovered'); const l = item.querySelector(':scope > .nav-link'); if (l) l.setAttribute('aria-expanded','false'); }); } });
+})();
+
+/* ── MOBILE MENU ── */
+(function() {
+  const menu = document.getElementById('mobile-menu');
+  const toggleBtns = document.querySelectorAll('[data-mobile-toggle]');
+  const hamOpen  = document.querySelector('.ham-open');
+  const hamClose = document.querySelector('.ham-close');
+  const overlay  = document.getElementById('mobile-overlay') || document.querySelector('.mobile-overlay');
+  if (!menu) return;
+
+  let isOpen = false;
+  let closeTimer = null;
+  const SLIDE_MS = 350;
+
+  function openMenu() {
+    clearTimeout(closeTimer);
+    isOpen = true;
+    menu.style.display = 'flex';
+    if (overlay) overlay.style.display = 'block';
+    menu.getBoundingClientRect(); // force reflow so transition fires
+    menu.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    toggleBtns.forEach(b => b.setAttribute('aria-expanded','true'));
+    if (hamOpen)  hamOpen.style.display  = 'none';
+    if (hamClose) hamClose.style.display = 'block';
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    toggleBtns.forEach(b => b.setAttribute('aria-expanded','false'));
+    if (hamOpen)  hamOpen.style.display  = 'block';
+    if (hamClose) hamClose.style.display = 'none';
+    closeTimer = setTimeout(() => {
+      menu.style.display = '';
+      if (overlay) overlay.style.display = '';
+    }, SLIDE_MS);
+  }
+
+  toggleBtns.forEach(b => b.addEventListener('click', () => isOpen ? closeMenu() : openMenu()));
+  if (overlay) overlay.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeMenu(); });
+
+  /* accordion */
+  menu.querySelectorAll('[data-mobile-accordion]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sub = btn.nextElementSibling;
+      const chevron = btn.querySelector('.mobile-chevron');
+      if (!sub) return;
+      const expanded = btn.classList.contains('active');
+      menu.querySelectorAll('[data-mobile-accordion].active').forEach(other => {
+        if (other === btn) return;
+        other.classList.remove('active'); other.setAttribute('aria-expanded','false');
+        const os = other.nextElementSibling; const oc = other.querySelector('.mobile-chevron');
+        if (os) os.style.maxHeight = '0px'; if (oc) oc.style.transform = 'rotate(0deg)';
+      });
+      if (expanded) {
+        btn.classList.remove('active'); btn.setAttribute('aria-expanded','false');
+        sub.style.maxHeight = '0px'; if (chevron) chevron.style.transform = 'rotate(0deg)';
+      } else {
+        btn.classList.add('active'); btn.setAttribute('aria-expanded','true');
+        sub.style.maxHeight = sub.scrollHeight + 'px'; if (chevron) chevron.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+})();
+
+/* ── THEME TOGGLE ── */
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('pawspa-theme');
+  if (stored === 'dark') html.setAttribute('data-theme','dark');
+
+  function updateIcons() {
+    const dark = html.getAttribute('data-theme') === 'dark';
+    document.querySelectorAll('[data-icon-light]').forEach(el => el.style.display = dark ? '' : 'none');
+    document.querySelectorAll('[data-icon-dark]').forEach(el  => el.style.display = dark ? 'none' : '');
+    document.querySelectorAll('[data-theme-toggle]').forEach(btn => btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'));
+  }
+  updateIcons();
+
+  document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      if (isDark) { html.removeAttribute('data-theme'); localStorage.setItem('pawspa-theme','light'); }
+      else        { html.setAttribute('data-theme','dark'); localStorage.setItem('pawspa-theme','dark'); }
+      updateIcons();
+    });
+  });
+})();
+
+/* ── RTL TOGGLE ── */
+(function() {
+  document.querySelectorAll('[data-rtl-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+      document.documentElement.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
+      document.querySelectorAll('[data-rtl-toggle]').forEach(b => b.classList.toggle('active', !isRtl));
+    });
+  });
+})();
+</script>
+</body>
+</html>

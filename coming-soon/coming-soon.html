@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ═══════════════════════════════════
+       SEO META
+  ════════════════════════════════════ -->
+  <title>PawSpa — Something Exciting is Coming Soon 🐾</title>
+  <meta name="description"
+    content="PawSpa is getting a fresh new look. Premium pet grooming & spa services launching soon. Subscribe to be first in line." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="PawSpa — Coming Soon" />
+  <meta property="og:description" content="Something big is brewing at PawSpa. Be first to know." />
+  <meta property="og:site_name"   content="PawSpa" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../global-images/favicon.svg" />
+
+  <!-- Google Fonts — Poppins + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+
+  <!-- Page CSS (self-contained — no global.css dependency) -->
+  <link rel="stylesheet" href="coming-soon.css" />
+    <link rel="stylesheet" href="../global-css/global.css">
+  <link rel="stylesheet" href="../global-css/navbar.css">
+  <link rel="stylesheet" href="../global-css/footer.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+       CANVAS — particle / paw-print bg
+  ════════════════════════════════════ -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════════════════════════
+       GRAIN OVERLAY
+  ════════════════════════════════════ -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════
+       RADIAL GLOW BLOBS
+  ════════════════════════════════════ -->
+  <div class="glow-field" aria-hidden="true">
+    <div class="glow glow--green"></div>
+    <div class="glow glow--aqua"></div>
+    <div class="glow glow--gold"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       MAIN WRAPPER
+  ════════════════════════════════════ -->
+  <div class="cs-wrapper" role="main">
+
+    <!-- ── TOP BAR ── -->
+    <header class="cs-header" data-anim="fade-down">
+      <a href="../home-1/home.html" class="cs-logo" aria-label="PawSpa home">
+        <img src="../global-images/logo.svg"
+             alt="PawSpa logo"
+             class="cs-logo__img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <!-- Fallback wordmark if logo.svg is missing -->
+        <span class="cs-logo__fallback" style="display:none" aria-hidden="true">
+          <span class="clf-paw">Paw</span><span class="clf-spa">Spa</span>
+        </span>
+      </a>
+
+      <!-- Theme toggle — standalone since no global.js on this page -->
+      <button class="cs-theme-btn" id="cs-theme-toggle"
+              aria-label="Toggle light / dark mode" title="Toggle theme">
+        <!-- Moon icon (shown in dark mode → click = go light) -->
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+        <!-- Sun icon (shown in light mode → click = go dark) -->
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1"  y1="12" x2="3"  y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- ── HERO CONTENT ── -->
+    <section class="cs-hero" aria-labelledby="cs-headline">
+
+      <!-- Eyebrow -->
+      <div class="cs-eyebrow" data-anim="fade-up" data-anim-delay="100">
+        <span class="cse-dot" aria-hidden="true"></span>
+        We're Grooming Something Special
+        <span class="cse-dot" aria-hidden="true"></span>
+      </div>
+
+      <!-- Main headline -->
+      <h1 class="cs-headline" id="cs-headline" data-anim="fade-up" data-anim-delay="200">
+        <span class="csh-line csh-line--1">Something</span>
+        <span class="csh-line csh-line--2">
+          <span class="csh-accent">Paw</span>some
+        </span>
+        <span class="csh-line csh-line--3">is Coming</span>
+      </h1>
+
+      <!-- Sub text -->
+      <p class="cs-sub" data-anim="fade-up" data-anim-delay="350">
+        PawSpa is getting a full makeover. New services, new locations, a brand-new
+        booking experience — and a whole lot more love for your furry family members.
+        <br class="cs-br" />Stay close. You won't want to miss this.
+      </p>
+
+      <!-- ── COUNTDOWN TIMER ── -->
+      <div class="cs-countdown" id="countdown"
+           role="timer" aria-live="polite" aria-label="Launch countdown"
+           data-anim="fade-up" data-anim-delay="480">
+        <div class="cd-block">
+          <div class="cd-num" id="cd-days">00</div>
+          <div class="cd-lbl">Days</div>
+        </div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="cd-hours">00</div>
+          <div class="cd-lbl">Hours</div>
+        </div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="cd-mins">00</div>
+          <div class="cd-lbl">Minutes</div>
+        </div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="cd-secs">00</div>
+          <div class="cd-lbl">Seconds</div>
+        </div>
+      </div><!-- /#countdown -->
+
+      <!-- ── PROGRESS BAR ── -->
+      <div class="cs-progress-wrap" data-anim="fade-up" data-anim-delay="560"
+           role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68"
+           aria-label="Launch preparation progress">
+        <div class="cspw-top">
+          <span class="cspw-lbl">Launch preparation</span>
+          <span class="cspw-pct" id="progress-pct">68%</span>
+        </div>
+        <div class="cspw-track">
+          <div class="cspw-fill" id="progress-fill" style="width: 0%"></div>
+          <div class="cspw-glow" id="progress-glow"></div>
+        </div>
+      </div>
+
+      <!-- ── EMAIL SUBSCRIBE ── -->
+      <div class="cs-subscribe" data-anim="fade-up" data-anim-delay="640">
+        <p class="css-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M18 8h1a4 4 0 010 8h-1"/>
+            <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+            <line x1="6" y1="1" x2="6" y2="4"/>
+            <line x1="10" y1="1" x2="10" y2="4"/>
+            <line x1="14" y1="1" x2="14" y2="4"/>
+          </svg>
+          Get early access + 20% off your first booking
+        </p>
+
+        <form class="css-form" id="subscribe-form" novalidate
+              aria-label="Early access subscription form">
+          <div class="css-field-wrap" id="css-field-wrap">
+            <label for="sub-email" class="sr-only">Your email address</label>
+            <input
+              type="email"
+              id="sub-email"
+              name="email"
+              class="css-input"
+              placeholder="Enter your email address"
+              autocomplete="email"
+              required
+              aria-required="true"
+              aria-describedby="sub-error"
+            />
+            <button type="submit" class="css-btn" aria-label="Notify me">
+              <span class="css-btn__text">Notify Me</span>
+              <svg class="css-btn__arrow" width="18" height="18" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+          <p class="css-error" id="sub-error" role="alert" aria-live="assertive"></p>
+          <p class="css-privacy">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+            No spam, ever. Unsubscribe anytime.
+          </p>
+        </form>
+
+        <!-- Success state (hidden by default) -->
+        <div class="css-success" id="css-success" aria-live="polite" hidden>
+          <div class="css-success__icon" aria-hidden="true">🎉</div>
+          <div class="css-success__title">You're on the list!</div>
+          <div class="css-success__body">
+            We'll email you the moment PawSpa goes live — plus your exclusive 20% off code.
+          </div>
+        </div>
+      </div><!-- /.cs-subscribe -->
+
+      <!-- ── WHAT'S COMING CHIPS ── -->
+      <div class="cs-coming-chips" data-anim="fade-up" data-anim-delay="760"
+           aria-label="Upcoming features">
+        <span class="cc-label">What's coming:</span>
+        <div class="cc-list" role="list">
+          <span class="cc-chip" role="listitem">✂️ New Salon Locations</span>
+          <span class="cc-chip" role="listitem">📱 Mobile App</span>
+          <span class="cc-chip" role="listitem">🐾 Loyalty Programme</span>
+          <span class="cc-chip" role="listitem">🛁 Luxury Spa Packages</span>
+          <span class="cc-chip" role="listitem">🚐 At-Home Service</span>
+        </div>
+      </div>
+
+    </section><!-- /.cs-hero -->
+
+    <!-- ── FOOTER BAR ── -->
+    <footer class="cs-footer" data-anim="fade-up" data-anim-delay="880">
+      <div class="csf-socials" aria-label="Social media links">
+        <!-- Instagram -->
+        <a href="#" class="csf-social" aria-label="PawSpa on Instagram" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" class="csf-social" aria-label="PawSpa on Facebook" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+          </svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/919876543210" class="csf-social"
+           aria-label="Contact PawSpa on WhatsApp" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="#" class="csf-social" aria-label="PawSpa on X (Twitter)" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M4 4l16 16M4 20L20 4"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="csf-contact">
+        <a href="tel:+919876543210" class="csf-contact__link" aria-label="Call PawSpa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.63 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.54 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.54a16 16 0 006.07 6.07l1.93-1.93a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          +91 (987) 654-3210
+        </a>
+        <span class="csf-dot" aria-hidden="true">·</span>
+        <a href="mailto:hr@pawspa.in" class="csf-contact__link" aria-label="Email PawSpa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          hr@pawspa.in
+        </a>
+      </div>
+
+      <p class="csf-copy">
+        &copy; <span id="cs-year"></span> PawSpa. All rights reserved.
+      </p>
+    </footer>
+
+  </div><!-- /.cs-wrapper -->
+
+  <!-- Page JS -->
+  <script src="coming-soon.js"></script>
+</body>
+</html>
