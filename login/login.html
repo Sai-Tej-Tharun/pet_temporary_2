@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — PawSpa</title>
+  <meta name="description" content="Sign in to your PawSpa account." />
+  <meta name="robots" content="noindex, nofollow" />
+    <!-- Favicon -->
+  <link rel="icon" href="../global-images/favicon.svg" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    
+     
+   
+  <style>
+/* ─── TOKENS ───────────────────────────────── */
+:root {
+  --g:      #3E7C59;
+  --gd:     #1F3F2D;
+  --gl:     #BFD8C5;
+  --aq:     #7ED1C6;
+  --gold:   #D9A85F;
+  --cream:  #FBF9F6;
+  --white:  #FFFFFF;
+  --border: #E6E8EC;
+  --txt:    #1F2933;
+  --muted:  #6B7280;
+  --head:   #1F3F2D;
+  --card:   #FFFFFF;
+  --bg:     #F6EFE6;
+  --fh: 'Poppins', sans-serif;
+  --fb: 'Inter', sans-serif;
+  --spring: cubic-bezier(0.68, -0.1, 0.32, 1.1);
+  --smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 0.65s;
+}
+[data-theme="dark"] {
+  --cream: #0F1A14;
+  --white: #172212;
+  --card:  #1C2B1F;
+  --bg:    #0F1A14;
+  --border:#2A3D30;
+  --txt:   #C8DFCE;
+  --muted: #8DA995;
+  --head:  #C8DFCE;
+}
+
+/* ─── RESET ────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+
+body.auth-body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fb);
+  background: var(--bg);
+  transition: background 0.3s;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+body.auth-body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 20% 50%, rgba(191,216,197,0.3) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 80% 50%, rgba(126,209,198,0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] body.auth-body::before {
+  background:
+    radial-gradient(ellipse 55% 55% at 20% 50%, rgba(62,124,89,0.1) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 80% 50%, rgba(62,124,89,0.07) 0%, transparent 65%);
+}
+
+/* ─── UTILITY CONTROLS ─────────────────────── */
+.auth-controls {
+  position: fixed; top: 1.25rem; right: 1.25rem;
+  z-index: 500; display: flex; gap: .5rem;
+}
+[dir="rtl"] .auth-controls { right: auto; left: 1.25rem; }
+
+.auth-ctrl-btn {
+  min-width: 48px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.auth-ctrl-btn:hover { background: var(--g); color: #fff; border-color: var(--g); }
+
+/* ─── OUTER CARD ───────────────────────────── */
+.auth-wrap {
+  position: relative;
+  width: min(940px, 96vw);
+  height: min(590px, 93vh);
+  display: flex;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(31,63,45,.16);
+  z-index: 1;
+  background: var(--card);
+  transition: background .3s;
+}
+
+/* ─── GREEN PANEL (LEFT) ───────────────────── */
+.green-panel {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(145deg, var(--gd) 0%, var(--g) 55%, var(--aq) 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem 1.5rem;
+  flex-shrink: 0;
+}
+.ovl-content {
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+  gap: .65rem; width: 100%;
+}
+.paw-wrap { width: 72px; height: 72px; position: relative; }
+.ovl-logo  { height: 36px; filter: brightness(0) invert(1); object-fit: contain; }
+.ovl-logo-text { font-family:var(--fh); font-size:1.1rem; font-weight:800; color:#fff; }
+.ovl-title {
+  font-family: var(--fh); font-size: 1.3rem; font-weight: 800;
+  color: #fff; line-height: 1.25;
+}
+.ovl-body {
+  font-family: var(--fb); font-size: .77rem;
+  color: rgba(255,255,255,.8); line-height: 1.65; max-width: 220px;
+}
+.ovl-perks {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: .4rem;
+  text-align: left; width: 100%; max-width: 200px;
+}
+.ovl-perks li {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .75rem; color: rgba(255,255,255,.85);
+  font-family: var(--fh); font-weight: 500;
+}
+.ovl-perks li span {
+  width: 18px; height: 18px;
+  background: rgba(255,255,255,.2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.ovl-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .6rem 1.6rem;
+  font-family: var(--fh); font-size: .82rem; font-weight: 600;
+  color: #fff; background: transparent;
+  border: 2px solid rgba(255,255,255,.65); border-radius: 999px;
+  cursor: pointer; transition: all .25s; letter-spacing: .2px;
+  margin-top: .1rem; text-decoration: none;
+}
+.ovl-btn:hover { background: rgba(255,255,255,.15); border-color: #fff; transform: translateY(-1px); }
+
+/* ─── FORM PANEL (RIGHT) ───────────────────── */
+.form-panel {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.75rem;
+  background: var(--card);
+  transition: background .3s;
+  overflow-y: auto;
+}
+.form-inner {
+  width: 100%;
+  max-width: 310px;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+.form-logo {
+  display: flex; justify-content: center;
+  margin-bottom: .1rem;
+}
+.logo-img  { height: 40px; object-fit: contain; }
+.logo-text { font-family: var(--fh); font-size: 1.25rem; font-weight: 800; color: var(--g); }
+.form-title {
+  font-family: var(--fh); font-size: 1.45rem; font-weight: 800;
+  color: var(--head); text-align: center; letter-spacing: -.02em; line-height: 1.2;
+}
+.form-subtitle {
+  font-size: .8rem; color: var(--muted);
+  text-align: center; margin-top: -.25rem;
+}
+
+/* Social buttons */
+.social-btns { display: flex; gap: .4rem; }
+.social-btn {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  padding: .45rem .3rem;
+  font-family: var(--fh); font-size: .72rem; font-weight: 600;
+  color: var(--txt);
+  background: var(--cream); border: 1.5px solid var(--border);
+  border-radius: 7px; cursor: pointer;
+  transition: all .2s;
+}
+.social-btn:hover {
+  border-color: var(--g); background: rgba(62,124,89,.05);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,.07);
+}
+
+/* Divider */
+.divider-text { display: flex; align-items: center; gap: .5rem; }
+.divider-text::before,
+.divider-text::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.divider-text span {
+  font-size: .68rem; color: var(--muted);
+  font-family: var(--fh); font-weight: 500; white-space: nowrap;
+}
+
+/* Fields */
+.auth-form { display: flex; flex-direction: column; gap: .5rem; }
+.field-group { display: flex; flex-direction: column; gap: .2rem; }
+.field-label {
+  font-family: var(--fh); font-size: .72rem; font-weight: 600; color: var(--head);
+}
+.field-wrap { position: relative; display: flex; align-items: center; }
+.fi {
+  position: absolute; left: .7rem;
+  display: flex; align-items: center;
+  color: var(--muted); pointer-events: none; z-index: 1;
+  transition: color .2s;
+}
+[dir="rtl"] .fi { left: auto; right: .7rem; }
+.fi-input {
+  width: 100%;
+  padding: .52rem .8rem .52rem 2.1rem;
+  font-family: var(--fb); font-size: .8rem;
+  color: var(--txt); background: var(--cream);
+  border: 1.5px solid var(--border); border-radius: 7px;
+  outline: none; appearance: none;
+  transition: all .2s;
+}
+[dir="rtl"] .fi-input { padding: .52rem 2.1rem .52rem .8rem; }
+.fi-input::placeholder { color: var(--muted); font-size: .8rem; }
+.fi-input:focus {
+  border-color: var(--g); background: #fff;
+  box-shadow: 0 0 0 3px rgba(62,124,89,.1);
+}
+[data-theme="dark"] .fi-input:focus { background: #1F3328; }
+.field-wrap:focus-within .fi { color: var(--g); }
+.fi-error {
+  font-size: .68rem; color: #e05252;
+  font-family: var(--fb); display: none;
+}
+.field-group.has-error .fi-input  { border-color: #e05252; box-shadow: 0 0 0 3px rgba(224,82,82,.09); }
+.field-group.has-error .fi-error  { display: block; }
+.field-group.has-success .fi-input{ border-color: var(--g); }
+
+.eye-btn {
+  position: absolute; right: .6rem;
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); display: flex; align-items: center;
+  padding: .2rem; border-radius: 4px; transition: color .2s;
+}
+.eye-btn:hover { color: var(--g); }
+[dir="rtl"] .eye-btn { right: auto; left: .6rem; }
+
+.row-between {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .5rem; flex-wrap: wrap;
+}
+.check-label {
+  display: flex; align-items: center; gap: .4rem;
+  cursor: pointer; font-size: .73rem; color: var(--muted); user-select: none;
+}
+.check-label input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.cbox {
+  width: 15px; height: 15px;
+  border: 1.5px solid var(--border); border-radius: 4px;
+  background: var(--cream); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; position: relative;
+}
+.check-label input:checked + .cbox { background: var(--g); border-color: var(--g); }
+.check-label input:checked + .cbox::after {
+  content: '';
+  width: 7px; height: 4px;
+  border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.check-label:hover .cbox { border-color: var(--g); }
+.forgot-link {
+  font-size: .72rem; color: var(--g); text-decoration: none;
+  font-family: var(--fh); font-weight: 500; transition: color .2s;
+}
+.forgot-link:hover { color: var(--gd); text-decoration: underline; }
+
+.btn-sub {
+  width: 100%; padding: .65rem;
+  font-family: var(--fh); font-size: .85rem; font-weight: 600;
+  color: #fff; background: var(--g); border: none;
+  border-radius: 999px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: .4rem;
+  box-shadow: 0 4px 14px rgba(62,124,89,.3);
+  transition: all .3s; position: relative; overflow: hidden;
+  margin-top: .15rem; letter-spacing: .2px;
+}
+.btn-sub:hover { background: var(--gd); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(62,124,89,.4); }
+.btn-sub:active{ transform: translateY(0); }
+.btn-sub::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform .5s;
+}
+.btn-sub:hover::after { transform: translateX(100%); }
+.btn-sub__spin {
+  width: 15px; height: 15px;
+  border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+  border-radius: 50%; animation: spin .7s linear infinite; display: none;
+}
+.btn-sub.loading .btn-sub__text { opacity: .7; }
+.btn-sub.loading .btn-sub__spin { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.switch-line {
+  text-align: center;
+  font-size: .8rem; color: var(--muted); font-family: var(--fb);
+  margin-top: .1rem;
+}
+.switch-link {
+  color: var(--g); font-family: var(--fh); font-weight: 600;
+  font-size: .8rem; text-decoration: underline;
+}
+.switch-link:hover { color: var(--gd); }
+
+/* Paw animations */
+.paw-svg { overflow: visible; }
+.paw-pad {
+  transform-origin: center;
+  transform-box: fill-box;
+  opacity: 0;
+  animation: pawIn .55s cubic-bezier(.34,1.56,.64,1) forwards, pawPls 3s ease-in-out infinite;
+}
+@keyframes pawIn {
+  0%   { transform:scale(.3);   opacity:0; }
+  65%  { transform:scale(1.12); opacity:1; }
+  85%  { transform:scale(.96); }
+  100% { transform:scale(1);    opacity:1; }
+}
+@keyframes pawPls {
+  0%,100% { transform:scale(1);    opacity:.9; }
+  50%      { transform:scale(1.07); opacity:1;  }
+}
+.paw-group { animation: pawGlow 3s ease-in-out infinite; }
+@keyframes pawGlow {
+  0%,100% { filter:drop-shadow(0 0 3px rgba(255,255,255,.25)); }
+  50%      { filter:drop-shadow(0 0 9px rgba(255,255,255,.55)); }
+}
+
+/* Floating paws */
+.bg-paw {
+  position: fixed; pointer-events: none; z-index: 0;
+  color: var(--g); opacity: .07;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0%   { transform:translateY(110vh) rotate(0deg);   opacity:0;   }
+  8%   { opacity:.07; }
+  92%  { opacity:.07; }
+  100% { transform:translateY(-15vh) rotate(330deg); opacity:0; }
+}
+
+/* Dark mode */
+[data-theme="dark"] .auth-wrap    { background: #172212; }
+[data-theme="dark"] .form-panel   { background: #172212; }
+[data-theme="dark"] .fi-input     { background: #1C2B1F; border-color: #2A3D30; color: #C8DFCE; }
+[data-theme="dark"] .fi-input:focus { background: #1F3328; }
+[data-theme="dark"] .social-btn   { background: #1C2B1F; border-color: #2A3D30; color: #C8DFCE; }
+[data-theme="dark"] .social-btn:hover { background: rgba(62,124,89,.15); }
+[data-theme="dark"] .cbox         { background: #1C2B1F; border-color: #2A3D30; }
+[data-theme="dark"] .divider-text::before,
+[data-theme="dark"] .divider-text::after { background: #2A3D30; }
+[data-theme="dark"] .auth-ctrl-btn{ background: #1C2B1F; border-color:#2A3D30; color:#8DA995; }
+
+/* RTL */
+[dir="rtl"] .fi           { left:auto; right:.7rem; }
+[dir="rtl"] .fi-input     { padding:.52rem 2.1rem .52rem .8rem; }
+[dir="rtl"] .eye-btn      { right:auto; left:.6rem; }
+[dir="rtl"] .row-between  { flex-direction:row-reverse; }
+[dir="rtl"] .check-label  { flex-direction:row-reverse; }
+[dir="rtl"] .social-btns  { flex-direction:row-reverse; }
+
+/* Success overlay */
+@keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+@keyframes scaleIn { from{transform:scale(.5);opacity:0} to{transform:scale(1);opacity:1} }
+
+/* Mobile */
+@media (max-width: 767px) {
+  html, body.auth-body { height: auto; overflow: auto; }
+  .auth-wrap {
+    width: 100%; height: auto; min-height: 100vh;
+    border-radius: 0; flex-direction: column;
+    box-shadow: none;
+  }
+  .green-panel { width: 100%; padding: 2rem 1.5rem; }
+  .form-panel  { width: 100%; height: auto; padding: 2rem 1.25rem; }
+}
+  </style>
+    <link rel="stylesheet" href="../global-css/global.css">
+  <link rel="stylesheet" href="../global-css/navbar.css">
+  <link rel="stylesheet" href="../global-css/footer.css">
+</head>
+
+<body class="auth-body">
+
+  <!-- Theme + RTL controls -->
+  <div class="auth-controls" role="toolbar" aria-label="Display controls">
+    <button class="auth-ctrl-btn" id="theme-toggle" aria-label="Toggle dark mode">
+      <svg data-icon-light style="display:none" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg data-icon-dark width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <button class="auth-ctrl-btn" id="rtl-toggle" aria-label="Switch to RTL">
+      <span id="rtl-text">RTL</span>
+    </button>
+  </div>
+
+  <div class="auth-wrap">
+
+    <!-- ─── GREEN PANEL (LEFT) ─── -->
+    <div class="green-panel">
+      <div class="ovl-content">
+        <div class="paw-wrap" id="paw-a"></div>
+        <h2 class="ovl-title">New Here? 🐾</h2>
+        <p class="ovl-body">Create a free account to book grooming sessions, earn PawPoints rewards, and give your furry friend the care they deserve.</p>
+        <ul class="ovl-perks">
+          <li><span>✓</span> Book &amp; manage appointments</li>
+          <li><span>✓</span> Upload vaccination records</li>
+          <li><span>✓</span> Earn &amp; redeem PawPoints</li>
+          <li><span>✓</span> Multiple pet profiles</li>
+        </ul>
+        <a href="register.html" class="ovl-btn">Create Free Account</a>
+      </div>
+    </div>
+
+    <!-- ─── LOGIN FORM (RIGHT) ─── -->
+    <div class="form-panel">
+      <div class="form-inner">
+
+        <div class="form-logo">
+    <a href="../home-1/home.html" class="navbar-logo" aria-label="PawSpa — Home">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none" role="img" aria-label="PawSpa logo">
+
+  <!--
+    USAGE: Must be INLINED in HTML, not used as <img src>.
+    Add to your stylesheet:
+
+    .logo-dark  { display: none; }
+    .logo-light { display: block; }
+    [data-theme="dark"] .logo-dark  { display: block; }
+    [data-theme="dark"] .logo-light { display: none; }
+  -->
+
+  <!-- ── PAW ICON (always same colours, works on both themes) ── -->
+  <g transform="translate(2, 4)">
+    <!-- Main pad -->
+    <ellipse cx="22" cy="32" rx="10" ry="8.5" fill="#3E7C59"/>
+    <!-- Toe beans -->
+    <ellipse cx="11" cy="24" rx="5"   ry="6.5" fill="#3E7C59" transform="rotate(-18 11 24)"/>
+    <ellipse cx="18" cy="19" rx="5"   ry="6.5" fill="#3E7C59" transform="rotate(-6 18 19)"/>
+    <ellipse cx="26" cy="19" rx="5"   ry="6.5" fill="#3E7C59" transform="rotate(6 26 19)"/>
+    <ellipse cx="33" cy="24" rx="5"   ry="6.5" fill="#3E7C59" transform="rotate(18 33 24)"/>
+    <!-- Inner pad highlight -->
+    <ellipse cx="22" cy="32" rx="6.5" ry="5.5" fill="#BFD8C5" opacity="0.35"/>
+  </g>
+
+  <!-- ── LIGHT MODE text ── -->
+  <g class="logo-light">
+    <!-- "Paw" in dark green -->
+    <text
+      x="54" y="34"
+      font-family="Georgia, 'Playfair Display', serif"
+      font-size="28"
+      font-weight="700"
+      font-style="italic"
+      letter-spacing="-0.5"
+      fill="#1F3F2D"
+    >Paw</text>
+    <!-- "Spa" in brand green -->
+<text
+      x="116" y="34"
+      font-family="Georgia, 'Playfair Display', serif"
+      font-size="28"
+      font-weight="700"
+      font-style="italic"
+      letter-spacing="-0.5"
+      fill="#3E7C59"
+    >Spa</text>
+    <!-- Tagline -->
+    <text
+      x="54" y="46"
+      font-family="Arial, sans-serif"
+      font-size="8"
+      font-weight="600"
+      letter-spacing="2.8"
+      fill="#3E7C59"
+      opacity="0.75"
+    >PREMIUM PET GROOMING</text>
+  </g>
+
+  <!-- ── DARK MODE text ── -->
+  <g class="logo-dark">
+    <!-- "Paw" in light green -->
+    <text
+      x="54" y="34"
+      font-family="Georgia, 'Playfair Display', serif"
+      font-size="28"
+      font-weight="700"
+      font-style="italic"
+      letter-spacing="-0.5"
+      fill="#BFD8C5"
+    >Paw</text>
+    <!-- "Spa" in bright green -->
+<text
+      x="116" y="34"
+      font-family="Georgia, 'Playfair Display', serif"
+      font-size="28"
+      font-weight="700"
+      font-style="italic"
+      letter-spacing="-0.5"
+      fill="#6DBF94"
+    >Spa</text>
+    <!-- Tagline -->
+    <text
+      x="54" y="46"
+      font-family="Arial, sans-serif"
+      font-size="8"
+      font-weight="600"
+      letter-spacing="2.8"
+      fill="#BFD8C5"
+      opacity="0.85"
+    >PREMIUM PET GROOMING</text>
+  </g>
+
+</svg>
+    </a>
+        </div>
+
+        <h1 class="form-title">Welcome Back</h1>
+        <p class="form-subtitle">Sign in to your PawSpa account 🐶</p>
+
+        <div class="social-btns">
+          <button class="social-btn" aria-label="Sign in with Google">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            Google
+          </button>
+          <button class="social-btn" aria-label="Sign in with Apple">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09z"/><path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701z"/></svg>
+            Apple
+          </button>
+          <button class="social-btn" aria-label="Sign in with Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </button>
+        </div>
+
+        <div class="divider-text"><span>or continue with email</span></div>
+
+        <form id="login-form" class="auth-form" novalidate>
+          <div class="field-group">
+            <label class="field-label" for="login-email">Email</label>
+            <div class="field-wrap">
+              <span class="fi"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+              <input class="fi-input" type="email" id="login-email" placeholder="your@email.com" autocomplete="email" required />
+            </div>
+            <span class="fi-error">Please enter a valid email.</span>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="login-password">Password</label>
+            <div class="field-wrap">
+              <span class="fi"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+              <input class="fi-input" type="password" id="login-password" placeholder="Your password" autocomplete="current-password" required />
+              <button type="button" class="eye-btn" data-target="login-password" aria-label="Show password">
+                <svg class="eye-show" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-hide" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+            <span class="fi-error">Please enter your password.</span>
+          </div>
+
+          <div class="row-between">
+            <label class="check-label">
+              <input type="checkbox" id="remember-me" />
+              <span class="cbox"></span>
+              Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-sub">
+            <span class="btn-sub__text">Sign In</span>
+            <span class="btn-sub__spin" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <p class="switch-line">
+          Don't have an account?
+          <a href="register.html" class="switch-link">Create one free →</a>
+        </p>
+
+      </div>
+    </div>
+
+  </div><!-- /.auth-wrap -->
+
+  <script>
+'use strict';
+
+/* 01. THEME TOGGLE */
+function initTheme() {
+  const btn   = document.getElementById('theme-toggle');
+  const light = btn?.querySelector('[data-icon-light]');
+  const dark  = btn?.querySelector('[data-icon-dark]');
+  let   theme = localStorage.getItem('pawspa-theme') || 'light';
+  const apply = t => {
+    document.documentElement.setAttribute('data-theme', t);
+    localStorage.setItem('pawspa-theme', t);
+    theme = t;
+    if (light) light.style.display = t === 'dark'  ? 'block' : 'none';
+    if (dark)  dark.style.display  = t === 'light' ? 'block' : 'none';
+  };
+  apply(theme);
+  btn?.addEventListener('click', () => apply(theme === 'dark' ? 'light' : 'dark'));
+}
+
+/* 02. RTL TOGGLE */
+function initRTL() {
+  const btn  = document.getElementById('rtl-toggle');
+  const text = document.getElementById('rtl-text');
+  let dir    = localStorage.getItem('pawspa-dir') || 'ltr';
+  const apply = d => {
+    document.documentElement.setAttribute('dir', d);
+    localStorage.setItem('pawspa-dir', d);
+    dir = d;
+    if (text) text.textContent = d === 'rtl' ? 'LTR' : 'RTL';
+    btn?.setAttribute('aria-label', d === 'rtl' ? 'Switch to LTR' : 'Switch to RTL');
+    btn?.classList.toggle('active', d === 'rtl');
+  };
+  apply(dir);
+  btn?.addEventListener('click', () => apply(dir === 'rtl' ? 'ltr' : 'rtl'));
+}
+
+/* 03. PAW SVG ANIMATION */
+function buildPawSVG() {
+  const NS  = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 72 72');
+  svg.setAttribute('width',  '72');
+  svg.setAttribute('height', '72');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.classList.add('paw-svg');
+  svg.style.overflow = 'visible';
+  const g = document.createElementNS(NS, 'g');
+  g.classList.add('paw-group');
+  const pads = [
+    { cx:36, cy:46, rx:13, ry:11, delay:0    },
+    { cx:19, cy:30, rx: 7, ry: 6, delay:.10  },
+    { cx:30, cy:24, rx: 7, ry: 6, delay:.20  },
+    { cx:42, cy:24, rx: 7, ry: 6, delay:.30  },
+    { cx:53, cy:30, rx: 7, ry: 6, delay:.40  },
+  ];
+  pads.forEach(p => {
+    const el = document.createElementNS(NS, 'ellipse');
+    el.setAttribute('cx', p.cx); el.setAttribute('cy', p.cy);
+    el.setAttribute('rx', p.rx); el.setAttribute('ry', p.ry);
+    el.setAttribute('fill', 'rgba(255,255,255,0.9)');
+    el.classList.add('paw-pad');
+    el.style.animationDelay = `${p.delay}s, ${p.delay + .55}s`;
+    g.appendChild(el);
+  });
+  svg.appendChild(g);
+  return svg;
+}
+
+function initPawAnimations() {
+  const wrap = document.getElementById('paw-a');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  wrap.appendChild(buildPawSVG());
+}
+
+/* 04. FLOATING BACKGROUND PAWS */
+function initFloatingPaws() {
+  let alive = 0;
+  const MAX = 7;
+  const spawn = () => {
+    if (alive >= MAX) return;
+    alive++;
+    const el = document.createElement('span');
+    el.className   = 'bg-paw';
+    el.textContent = '🐾';
+    el.setAttribute('aria-hidden', 'true');
+    const left = (Math.random() * 86 + 5).toFixed(1);
+    const size = (Math.random() * 0.8 + 0.7).toFixed(2);
+    const dur  = (Math.random() * 10 + 14).toFixed(1);
+    const del  = (Math.random() * 4).toFixed(2);
+    el.style.cssText = `left:${left}%;font-size:${size}rem;animation-duration:${dur}s;animation-delay:${del}s;`;
+    document.body.appendChild(el);
+    setTimeout(() => { el.remove(); alive--; }, (+dur + +del) * 1000 + 600);
+  };
+  spawn(); spawn(); spawn();
+  setInterval(spawn, 3200);
+}
+
+/* 05. EYE TOGGLE */
+function initEyeToggles() {
+  document.querySelectorAll('.eye-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = document.getElementById(btn.dataset.target);
+      if (!input) return;
+      const show  = input.type === 'password';
+      input.type  = show ? 'text' : 'password';
+      btn.querySelector('.eye-show').style.display = show ? 'none'  : 'block';
+      btn.querySelector('.eye-hide').style.display = show ? 'block' : 'none';
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+  });
+}
+
+/* 06. REAL-TIME VALIDATION */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function setFieldState(inputEl, isError) {
+  const g = inputEl?.closest?.('.field-group');
+  if (!g) return;
+  g.classList.toggle('has-error',   isError);
+  g.classList.toggle('has-success', !isError);
+}
+function initRealTime() {
+  const rules = [
+    { id:'login-email',    test: v => EMAIL_RE.test(v.trim()) },
+    { id:'login-password', test: v => v.length > 0 },
+  ];
+  rules.forEach(({ id, test }) => {
+    document.getElementById(id)?.addEventListener('blur', function () {
+      if (this.value) setFieldState(this, !test(this.value));
+    });
+    document.getElementById(id)?.addEventListener('input', function () {
+      if (this.closest('.field-group')?.classList.contains('has-error') && test(this.value)) {
+        setFieldState(this, false);
+      }
+    });
+  });
+}
+
+/* 07. FORM SUBMIT */
+function validateLoginForm() {
+  let ok = true;
+  const email = document.getElementById('login-email');
+  const pw    = document.getElementById('login-password');
+  const eOk   = EMAIL_RE.test((email?.value || '').trim());
+  const pOk   = (pw?.value || '').length > 0;
+  setFieldState(email, !eOk); if (!eOk) ok = false;
+  setFieldState(pw,    !pOk); if (!pOk) ok = false;
+  if (!ok) document.querySelector('#login-form .has-error input')?.focus();
+  return ok;
+}
+
+function showSuccessOverlay(msg, url) {
+  const ov = document.createElement('div');
+  ov.setAttribute('role', 'status');
+  ov.style.cssText = `position:fixed;inset:0;z-index:9999;background:rgba(12,24,16,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;animation:fadeIn .3s ease;font-family:'Poppins',sans-serif;`;
+  ov.innerHTML = `
+    <div style="width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#3E7C59,#7ED1C6);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(62,124,89,.5);animation:scaleIn .55s cubic-bezier(.34,1.56,.64,1) forwards;">
+      <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <p style="color:#fff;font-size:.95rem;font-weight:600;letter-spacing:.2px">${msg}</p>
+  `;
+  document.body.appendChild(ov);
+  setTimeout(() => { window.location.href = url; }, 1300);
+}
+
+function initForms() {
+  const loginForm = document.getElementById('login-form');
+  const loginBtn  = loginForm?.querySelector('.btn-sub');
+  loginForm?.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validateLoginForm()) return;
+    loginBtn?.classList.add('loading');
+    loginBtn && (loginBtn.disabled = true);
+    await new Promise(r => setTimeout(r, 1500));
+    loginBtn?.classList.remove('loading');
+    loginBtn && (loginBtn.disabled = false);
+    showSuccessOverlay('Welcome back! Redirecting…', '../admin-dashboard/dashboard.html');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initRTL();
+  initPawAnimations();
+  initFloatingPaws();
+  initEyeToggles();
+  initRealTime();
+  initForms();
+});
+  </script>
+      <script src="../global-js/global.js" defer></script>
+     <script src="../global-js/navbar.js" defer></script>
+   <script src="../global-js/footer.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!-- NAVBAR -->
+<nav class="navbar" id="main-navbar" role="navigation" aria-label="Main navigation">
+  <div class="navbar-inner">
+
+    <!-- LOGO -->
+    <a href="../home-1/home.html" class="navbar-logo" aria-label="PawSpa — Home">
+      <img src="../global-images/logo.svg" alt="PawSpa Logo" width="140" height="44" loading="eager">
+    </a>
+
+    <!-- DESKTOP NAV -->
+    <ul class="navbar-nav" role="menubar" aria-label="Site navigation">
+
+      <!-- Home -->
+      <li class="nav-item" role="none">
+        <a href="../home-1/home.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          Home
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-label="Home pages">
+          <li role="none">
+            <a href="../home-1/home.html" class="dropdown-item" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Home – Classic
+            </a>
+          </li>
+          <li role="none">
+            <a href="../home-2/home.html" class="dropdown-item" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Home – Premium
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- About -->
+      <li class="nav-item" role="none">
+        <a href="../about/about.html" class="nav-link" role="menuitem">About</a>
+      </li>
+
+      <!-- Services -->
+      <li class="nav-item" role="none">
+        <a href="../services/services.html" class="nav-link" role="menuitem">Services</a>
+      </li>
+
+      <!-- Pricing -->
+      <li class="nav-item" role="none">
+        <a href="../pricing/pricing.html" class="nav-link" role="menuitem">Pricing</a>
+      </li>
+
+      <!-- Blog -->
+      <li class="nav-item" role="none">
+        <a href="../blogs/blogs.html" class="nav-link" role="menuitem">Blogs</a>
+      </li>
+
+      <!-- Contact -->
+      <li class="nav-item" role="none">
+        <a href="../contact/contact.html" class="nav-link" role="menuitem">Contact</a>
+      </li>
+      <li class="nav-item" role="none">
+        <a href="../admin-dashboard/dashboard.html" class="nav-link" role="menuitem">Dashboard</a>
+      </li>
+      <!-- Get a Quote -->
+
+
+    </ul><!-- /.navbar-nav -->
+
+    <!-- ACTIONS -->
+    <div class="navbar-actions" role="group" aria-label="Site controls">
+
+      <!-- Theme Toggle -->
+      <button class="icon-btn" data-theme-toggle aria-label="Switch to dark mode" title="Dark mode" type="button">
+        <svg data-icon-light width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg data-icon-dark width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- RTL Toggle -->
+<button 
+  class="icon-btn" 
+  data-rtl-toggle 
+  aria-label="Switch to RTL" 
+  title="RTL mode" 
+  type="button"
+>
+  <span class="rtl-text">RTL</span>
+</button>
+
+      <!-- Book Now -->
+      <a href="#" class="btn btn-primary btn-sm navbar-btn-book" data-book-now aria-label="Book a grooming appointment">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Book Now
+      </a>
+
+      <!-- Login -->
+      <a href="../login/login.html" class="btn btn-secondary btn-sm navbar-btn-login" aria-label="Login to your account">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Login
+      </a>
+
+      <!-- Hamburger -->
+      <button class="navbar-toggle" data-mobile-toggle aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <svg class="ham-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg class="ham-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div><!-- /.navbar-actions -->
+  </div><!-- /.navbar-inner -->
+
+  <!-- MOBILE MENU (inside .navbar so it's injected together) -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation menu">
+
+    <div class="mobile-menu-header">
+      <a href="../home-1/home.html" class="navbar-logo" aria-label="PawSpa Home">
+        <img src="../global-images/logo.svg" alt="PawSpa Logo" width="120" height="40" loading="eager">
+      </a>
+      <button class="icon-btn" data-mobile-toggle aria-label="Close mobile menu" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-link" data-mobile-accordion aria-expanded="false" type="button">
+          <span>Home</span>
+          <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-submenu" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <a href="../home-1/home.html" class="mobile-submenu-link">Home – Classic</a>
+          <a href="../home-2/home.html" class="mobile-submenu-link">Home – Premium</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav-group">
+        <a href="../about/about.html" class="mobile-nav-link mobile-nav-link--plain">About</a>
+      </div>
+
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-link" data-mobile-accordion aria-expanded="false" type="button">
+          <span>Services</span>
+          <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-submenu" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <a href="../service-details/service-details-1.html" class="mobile-submenu-link">Full Grooming</a>
+          <a href="../service-details/service-details-2.html" class="mobile-submenu-link">Bath &amp; Blow Dry</a>
+          <a href="../service-details/service-details-3.html" class="mobile-submenu-link">Hair Styling</a>
+          <a href="../service-details/service-details-4.html" class="mobile-submenu-link">Nail Clipping</a>
+          <a href="../service-details/service-details-5.html" class="mobile-submenu-link">Ear Cleaning</a>
+          <a href="../service-details/service-details-6.html" class="mobile-submenu-link">Spa Treatments</a>
+          <a href="../services/services.html" class="mobile-submenu-link mobile-submenu-link--all">View All Services →</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav-group">
+        <a href="../pricing/pricing.html" class="mobile-nav-link mobile-nav-link--plain">Pricing</a>
+      </div>
+
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-link" data-mobile-accordion aria-expanded="false" type="button">
+          <span>Blog</span>
+          <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-submenu" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <a href="../blog-details/blog-details-1.html" class="mobile-submenu-link">Grooming Tips for Dogs</a>
+          <a href="../blog-details/blog-details-2.html" class="mobile-submenu-link">Cat Bath Guide</a>
+          <a href="../blog-details/blog-details-3.html" class="mobile-submenu-link">Pet Health &amp; Hygiene</a>
+          <a href="../blog-details/blog-details-4.html" class="mobile-submenu-link">Breed Grooming Guide</a>
+          <a href="../blog-details/blog-details-5.html" class="mobile-submenu-link">DIY Pet Care at Home</a>
+          <a href="../blog-details/blog-details-6.html" class="mobile-submenu-link">Spa Treatments Explained</a>
+          <a href="../blogs/blogs.html" class="mobile-submenu-link mobile-submenu-link--all">View All Posts →</a>
+        </div>
+      </div>
+
+      <div class="mobile-nav-group">
+        <a href="../contact/contact.html" class="mobile-nav-link mobile-nav-link--plain">Contact</a>
+      </div>
+
+    </nav>
+
+    <div class="mobile-ctas">
+      <a href="../contact/contact.html#contact-form" class="btn btn-ghost w-full mobile-cta-quote">Get a Quote</a>
+      <a href="#" class="btn btn-primary w-full" data-book-now>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Now
+      </a>
+      <a href="../login/login.html" class="btn btn-secondary w-full">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Login
+      </a>
+    </div>
+
+    <div class="mobile-toggles">
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme" type="button">
+        <svg data-icon-light width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg data-icon-dark width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" data-rtl-toggle aria-label="Toggle RTL" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8l4 4-4 4M3 12h18"/><path d="M7 4a4 4 0 000 8h3"/></svg>
+      </button>
+      <span class="mobile-toggles-label">Theme &amp; Direction</span>
+    </div>
+
+  </div><!-- /.mobile-menu -->
+</nav><!-- /.navbar -->
+
+<!-- OVERLAY — outside nav, at body level -->
+<div id="mobile-overlay" class="mobile-overlay"></div>
